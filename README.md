@@ -22,7 +22,7 @@ This package provides a ROS 2 node for capturing and publishing thermal images f
 
 ### Clone the repository
 
-    git clone [https://github.com/yourusername/flir_boson_ros2.git](https://github.com/MarcuSpade/boson_video_publisher.git)
+    git clone https://github.com/MarcuSpade/boson_video_publisher.git
     cd boson_video_publisher
 
 ### Build the package
