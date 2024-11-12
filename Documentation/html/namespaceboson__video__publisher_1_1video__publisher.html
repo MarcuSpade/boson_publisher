@@ -121,13 +121,23 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   36</span><span class="keyword">def </span>main(args=None):</div>
-<div class="line"><span class="lineno">   37</span>    rclpy.init(args=args)</div>
-<div class="line"><span class="lineno">   38</span>    video_publisher = VideoPublisher()</div>
-<div class="line"><span class="lineno">   39</span>    rclpy.spin(video_publisher)</div>
-<div class="line"><span class="lineno">   40</span>    video_publisher.destroy_node()</div>
-<div class="line"><span class="lineno">   41</span>    rclpy.shutdown()</div>
-<div class="line"><span class="lineno">   42</span> </div>
+
+<p class="definition">Definition at line <a class="el" href="video__publisher_8py_source.html#l00063">63</a> of file <a class="el" href="video__publisher_8py_source.html">video_publisher.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   63</span><span class="keyword">def </span>main(args=None):</div>
+<div class="line"><span class="lineno">   64</span>    <span class="comment"># Initialize the rclpy library</span></div>
+<div class="line"><span class="lineno">   65</span>    rclpy.init(args=args)</div>
+<div class="line"><span class="lineno">   66</span>    </div>
+<div class="line"><span class="lineno">   67</span>    <span class="comment"># Create an instance of the VideoPublisher node</span></div>
+<div class="line"><span class="lineno">   68</span>    video_publisher = VideoPublisher()</div>
+<div class="line"><span class="lineno">   69</span>    </div>
+<div class="line"><span class="lineno">   70</span>    <span class="comment"># Keep the node running and processing events</span></div>
+<div class="line"><span class="lineno">   71</span>    rclpy.spin(video_publisher)</div>
+<div class="line"><span class="lineno">   72</span>    </div>
+<div class="line"><span class="lineno">   73</span>    <span class="comment"># When the node is stopped, release resources and shut down rclpy</span></div>
+<div class="line"><span class="lineno">   74</span>    video_publisher.destroy_node()</div>
+<div class="line"><span class="lineno">   75</span>    rclpy.shutdown()</div>
+<div class="line"><span class="lineno">   76</span> </div>
+<div class="line"><span class="lineno">   77</span><span class="comment"># Entry point of the script</span></div>
 </div><!-- fragment -->
 </div>
 </div>

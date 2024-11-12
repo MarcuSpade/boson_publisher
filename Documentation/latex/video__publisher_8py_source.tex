@@ -1,0 +1,85 @@
+\doxysection{video\+\_\+publisher.\+py}
+\label{video__publisher_8py_source}\index{test\_ws/src/boson\_video\_publisher/boson\_video\_publisher/video\_publisher.py@{test\_ws/src/boson\_video\_publisher/boson\_video\_publisher/video\_publisher.py}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{keyword}{import}\ rclpy\ \ \textcolor{comment}{\#\ ROS\ 2\ Python\ client\ library}}
+\DoxyCodeLine{00002\ \textcolor{keyword}{from}\ rclpy.node\ \textcolor{keyword}{import}\ Node\ \ \textcolor{comment}{\#\ Base\ class\ for\ creating\ ROS\ 2\ nodes}}
+\DoxyCodeLine{00003\ \textcolor{keyword}{import}\ cv2\ \ \textcolor{comment}{\#\ OpenCV\ library\ for\ image\ processing}}
+\DoxyCodeLine{00004\ \textcolor{keyword}{from}\ cv\_bridge\ \textcolor{keyword}{import}\ CvBridge\ \ \textcolor{comment}{\#\ Library\ to\ convert\ between\ ROS\ and\ OpenCV\ images}}
+\DoxyCodeLine{00005\ \textcolor{keyword}{from}\ sensor\_msgs.msg\ \textcolor{keyword}{import}\ Image\ \ \textcolor{comment}{\#\ ROS\ 2\ message\ type\ for\ images}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{\#\ Define\ a\ class\ for\ the\ video\ publisher\ node}}
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }VideoPublisher(Node):}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{def\ }\_\_init\_\_(self):}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Initialize\ the\ node\ with\ the\ name\ 'video\_publisher'}}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ super().\_\_init\_\_(\textcolor{stringliteral}{'video\_publisher'})}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ a\ publisher\ for\ the\ 'boson\_video'\ topic\ with\ a\ queue\ size\ of\ 10}}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ This\ will\ publish\ Image\ messages}}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ self.publisher\_\ =\ self.create\_publisher(Image,\ \textcolor{stringliteral}{'boson\_video'},\ 10)}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Initialize\ CvBridge\ to\ convert\ between\ OpenCV\ images\ and\ ROS\ Image\ messages}}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ self.bridge\ =\ CvBridge()}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ a\ timer\ to\ call\ the\ timer\_callback\ function\ at\ 20\ Hz\ (0.05\ seconds\ interval)}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ self.timer\ =\ self.create\_timer(0.05,\ self.timer\_callback)}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Open\ the\ video\ capture\ device\ (FLIR\ Boson\ camera\ in\ this\ case)\ at\ '/dev/video2'}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Adjust\ the\ device\ path\ if\ necessary}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ self.cap\ =\ cv2.VideoCapture(\textcolor{stringliteral}{'/dev/video2'})}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ if\ the\ video\ capture\ device\ was\ successfully\ opened}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ self.cap.isOpened():}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Log\ an\ error\ message\ if\ the\ video\ device\ cannot\ be\ opened}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ self.get\_logger().error(\textcolor{stringliteral}{'Unable\ to\ open\ video\ device'})}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Shut\ down\ the\ ROS\ node\ if\ the\ video\ device\ is\ not\ accessible}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ rclpy.shutdown()}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{def\ }timer\_callback(self):}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Capture\ a\ frame\ from\ the\ video\ device}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ ret,\ frame\ =\ self.cap.read()}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ If\ a\ frame\ was\ successfully\ captured}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ret:}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Determine\ the\ image\ encoding\ type\ based\ on\ the\ number\ of\ color\ channels}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 'bgr8'\ for\ color\ images\ (3\ channels),\ 'mono8'\ for\ grayscale\ images\ (1\ channel)}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ encoding\ =\ \textcolor{stringliteral}{"{}bgr8"{}}\ \textcolor{keywordflow}{if}\ len(frame.shape)\ ==\ 3\ \textcolor{keywordflow}{else}\ \textcolor{stringliteral}{"{}mono8"{}}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Convert\ the\ OpenCV\ image\ to\ a\ ROS\ Image\ message}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ msg\ =\ self.bridge.cv2\_to\_imgmsg(frame,\ encoding=encoding)}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Publish\ the\ Image\ message\ on\ the\ 'boson\_video'\ topic}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ self.publisher\_.publish(msg)}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Log\ an\ info\ message\ indicating\ that\ a\ frame\ has\ been\ published}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ self.get\_logger().info(\textcolor{stringliteral}{'Publishing\ frame'})}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Log\ an\ error\ message\ if\ the\ frame\ capture\ failed}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ self.get\_logger().error(\textcolor{stringliteral}{'Failed\ to\ capture\ frame'})}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{def\ }destroy\_node(self):}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Release\ the\ video\ capture\ device\ before\ shutting\ down\ the\ node}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ super().destroy\_node()}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ self.cap.release()}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{\#\ Main\ function\ to\ initialize\ the\ node\ and\ start\ the\ ROS\ spinning\ loop}}
+\DoxyCodeLine{00063\ \textcolor{keyword}{def\ }main(args=None):}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{\#\ Initialize\ the\ rclpy\ library}}
+\DoxyCodeLine{00065\ \ \ \ \ rclpy.init(args=args)}
+\DoxyCodeLine{00066\ \ \ \ \ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{\#\ Create\ an\ instance\ of\ the\ VideoPublisher\ node}}
+\DoxyCodeLine{00068\ \ \ \ \ video\_publisher\ =\ VideoPublisher()}
+\DoxyCodeLine{00069\ \ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{\#\ Keep\ the\ node\ running\ and\ processing\ events}}
+\DoxyCodeLine{00071\ \ \ \ \ rclpy.spin(video\_publisher)}
+\DoxyCodeLine{00072\ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{\#\ When\ the\ node\ is\ stopped,\ release\ resources\ and\ shut\ down\ rclpy}}
+\DoxyCodeLine{00074\ \ \ \ \ video\_publisher.destroy\_node()}
+\DoxyCodeLine{00075\ \ \ \ \ rclpy.shutdown()}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{comment}{\#\ Entry\ point\ of\ the\ script}}
+\DoxyCodeLine{00078\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{'\_\_main\_\_'}:}
+\DoxyCodeLine{00079\ \ \ \ \ main()}
+
+\end{DoxyCode}

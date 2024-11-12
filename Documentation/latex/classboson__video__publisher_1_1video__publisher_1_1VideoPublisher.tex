@@ -1,5 +1,5 @@
 \doxysection{boson\+\_\+video\+\_\+publisher.\+video\+\_\+publisher.\+Video\+Publisher Class Reference}
-\hypertarget{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher}{}\label{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher}\index{boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}}
+\label{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher}\index{boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}}
 Inheritance diagram for boson\+\_\+video\+\_\+publisher.\+video\+\_\+publisher.\+Video\+Publisher\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,116 +9,177 @@ Inheritance diagram for boson\+\_\+video\+\_\+publisher.\+video\+\_\+publisher.\
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_a6412c425960ef5543c97798335672226}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\textbf{ \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
 \item 
-\mbox{\hyperlink{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_af53e6e7b1e03d8d1447688ba868e36b5}{timer\+\_\+callback}} (self)
+\textbf{ timer\+\_\+callback} (self)
 \item 
-\mbox{\hyperlink{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_aed510da841c5cef81df4b08e4f646894}{destroy\+\_\+node}} (self)
+\textbf{ destroy\+\_\+node} (self)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_a4e20fbdce96d817d9af87fe1153a13d0}{publisher\+\_\+}} = self.\+create\+\_\+publisher(Image, \textquotesingle{}boson\+\_\+video\textquotesingle{}, 10)
+\textbf{ publisher\+\_\+} = self.\+create\+\_\+publisher(Image, \textquotesingle{}boson\+\_\+video\textquotesingle{}, 10)
 \item 
-\mbox{\hyperlink{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_a6bc89706e65c0193918d8d22ab72b558}{bridge}} = Cv\+Bridge()
+\textbf{ bridge} = Cv\+Bridge()
 \item 
-\mbox{\hyperlink{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_a91def685497d76ac0d7a2fedfb5c3366}{timer}} = self.\+create\+\_\+timer(0.\+05, self.\+timer\+\_\+callback)
+\textbf{ timer} = self.\+create\+\_\+timer(0.\+05, self.\+timer\+\_\+callback)
 \item 
-\mbox{\hyperlink{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_a735a5b66164b812c465c8509ac13c026}{cap}} = cv2.\+Video\+Capture(\textquotesingle{}/dev/video2\textquotesingle{})
+\textbf{ cap} = cv2.\+Video\+Capture(\textquotesingle{}/dev/video2\textquotesingle{})
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+
+
+Definition at line \textbf{ 8} of file \textbf{ video\+\_\+publisher.\+py}.
+
+
+
 \doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_a6412c425960ef5543c97798335672226}\index{boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}!\_\_init\_\_@{\_\_init\_\_}}
+\index{boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}!\_\_init\_\_@{\_\_init\_\_}}
 \index{\_\_init\_\_@{\_\_init\_\_}!boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}}
-\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+\doxysubsubsection{\_\_init\_\_()}
 {\footnotesize\ttfamily \label{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_a6412c425960ef5543c97798335672226} 
 boson\+\_\+video\+\_\+publisher.\+video\+\_\+publisher.\+Video\+Publisher.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
 
 
+
+Definition at line \textbf{ 9} of file \textbf{ video\+\_\+publisher.\+py}.
+
+
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{def\ }\_\_init\_\_(self):}
-\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ super().\_\_init\_\_(\textcolor{stringliteral}{'video\_publisher'})}
-\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ self.publisher\_\ =\ self.create\_publisher(Image,\ \textcolor{stringliteral}{'boson\_video'},\ 10)}
-\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ self.bridge\ =\ CvBridge()}
-\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ self.timer\ =\ self.create\_timer(0.05,\ self.timer\_callback)\ \ \textcolor{comment}{\#\ Publica\ a\ cada\ 0.1\ segundos\ (10\ Hz)}}
-\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ self.cap\ =\ cv2.VideoCapture(\textcolor{stringliteral}{'/dev/video2'})\ \ \textcolor{comment}{\#\ Altere\ o\ dispositivo,\ se\ necessário}}
-\DoxyCodeLine{00014\ }
-\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ self.cap.isOpened():}
-\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ self.get\_logger().error(\textcolor{stringliteral}{'Não\ foi\ possível\ abrir\ o\ dispositivo\ de\ vídeo'})}
-\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ rclpy.shutdown()}
-\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{def\ }\_\_init\_\_(self):}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Initialize\ the\ node\ with\ the\ name\ 'video\_publisher'}}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ super().\_\_init\_\_(\textcolor{stringliteral}{'video\_publisher'})}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ a\ publisher\ for\ the\ 'boson\_video'\ topic\ with\ a\ queue\ size\ of\ 10}}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ This\ will\ publish\ Image\ messages}}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ self.publisher\_\ =\ self.create\_publisher(Image,\ \textcolor{stringliteral}{'boson\_video'},\ 10)}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Initialize\ CvBridge\ to\ convert\ between\ OpenCV\ images\ and\ ROS\ Image\ messages}}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ self.bridge\ =\ CvBridge()}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ a\ timer\ to\ call\ the\ timer\_callback\ function\ at\ 20\ Hz\ (0.05\ seconds\ interval)}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ self.timer\ =\ self.create\_timer(0.05,\ self.timer\_callback)}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Open\ the\ video\ capture\ device\ (FLIR\ Boson\ camera\ in\ this\ case)\ at\ '/dev/video2'}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Adjust\ the\ device\ path\ if\ necessary}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ self.cap\ =\ cv2.VideoCapture(\textcolor{stringliteral}{'/dev/video2'})}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ if\ the\ video\ capture\ device\ was\ successfully\ opened}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ self.cap.isOpened():}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Log\ an\ error\ message\ if\ the\ video\ device\ cannot\ be\ opened}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ self.get\_logger().error(\textcolor{stringliteral}{'Unable\ to\ open\ video\ device'})}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Shut\ down\ the\ ROS\ node\ if\ the\ video\ device\ is\ not\ accessible}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ rclpy.shutdown()}
+\DoxyCodeLine{00034\ }
 
 \end{DoxyCode}
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_aed510da841c5cef81df4b08e4f646894}\index{boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}!destroy\_node@{destroy\_node}}
+\index{boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}!destroy\_node@{destroy\_node}}
 \index{destroy\_node@{destroy\_node}!boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}}
-\doxysubsubsection{\texorpdfstring{destroy\_node()}{destroy\_node()}}
+\doxysubsubsection{destroy\_node()}
 {\footnotesize\ttfamily \label{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_aed510da841c5cef81df4b08e4f646894} 
 boson\+\_\+video\+\_\+publisher.\+video\+\_\+publisher.\+Video\+Publisher.\+destroy\+\_\+node (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
 
 
+
+Definition at line \textbf{ 57} of file \textbf{ video\+\_\+publisher.\+py}.
+
+
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{def\ }destroy\_node(self):}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ super().destroy\_node()}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ self.cap.release()}
-\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{def\ }destroy\_node(self):}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Release\ the\ video\ capture\ device\ before\ shutting\ down\ the\ node}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ super().destroy\_node()}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ self.cap.release()}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{\#\ Main\ function\ to\ initialize\ the\ node\ and\ start\ the\ ROS\ spinning\ loop}}
 
 \end{DoxyCode}
-\Hypertarget{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_af53e6e7b1e03d8d1447688ba868e36b5}\index{boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}!timer\_callback@{timer\_callback}}
+\index{boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}!timer\_callback@{timer\_callback}}
 \index{timer\_callback@{timer\_callback}!boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}}
-\doxysubsubsection{\texorpdfstring{timer\_callback()}{timer\_callback()}}
+\doxysubsubsection{timer\_callback()}
 {\footnotesize\ttfamily \label{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_af53e6e7b1e03d8d1447688ba868e36b5} 
 boson\+\_\+video\+\_\+publisher.\+video\+\_\+publisher.\+Video\+Publisher.\+timer\+\_\+callback (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
 
 
+
+Definition at line \textbf{ 35} of file \textbf{ video\+\_\+publisher.\+py}.
+
+
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{def\ }timer\_callback(self):}
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ ret,\ frame\ =\ self.cap.read()}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ret:}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Verifica\ o\ número\ de\ canais\ da\ imagem}}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ encoding\ =\ \textcolor{stringliteral}{"{}bgr8"{}}\ \textcolor{keywordflow}{if}\ len(frame.shape)\ ==\ 3\ \textcolor{keywordflow}{else}\ \textcolor{stringliteral}{"{}mono8"{}}}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Converte\ a\ imagem\ OpenCV\ para\ uma\ mensagem\ ROS\ e\ publica}}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ msg\ =\ self.bridge.cv2\_to\_imgmsg(frame,\ encoding=encoding)}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ self.publisher\_.publish(msg)}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ self.get\_logger().info(\textcolor{stringliteral}{'Publicando\ frame'})}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ self.get\_logger().error(\textcolor{stringliteral}{'Não\ foi\ possível\ capturar\ o\ frame'})}
-\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{def\ }timer\_callback(self):}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Capture\ a\ frame\ from\ the\ video\ device}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ ret,\ frame\ =\ self.cap.read()}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ If\ a\ frame\ was\ successfully\ captured}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ret:}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Determine\ the\ image\ encoding\ type\ based\ on\ the\ number\ of\ color\ channels}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 'bgr8'\ for\ color\ images\ (3\ channels),\ 'mono8'\ for\ grayscale\ images\ (1\ channel)}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ encoding\ =\ \textcolor{stringliteral}{"{}bgr8"{}}\ \textcolor{keywordflow}{if}\ len(frame.shape)\ ==\ 3\ \textcolor{keywordflow}{else}\ \textcolor{stringliteral}{"{}mono8"{}}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Convert\ the\ OpenCV\ image\ to\ a\ ROS\ Image\ message}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ msg\ =\ self.bridge.cv2\_to\_imgmsg(frame,\ encoding=encoding)}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Publish\ the\ Image\ message\ on\ the\ 'boson\_video'\ topic}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ self.publisher\_.publish(msg)}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Log\ an\ info\ message\ indicating\ that\ a\ frame\ has\ been\ published}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ self.get\_logger().info(\textcolor{stringliteral}{'Publishing\ frame'})}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Log\ an\ error\ message\ if\ the\ frame\ capture\ failed}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ self.get\_logger().error(\textcolor{stringliteral}{'Failed\ to\ capture\ frame'})}
+\DoxyCodeLine{00056\ }
 
 \end{DoxyCode}
 
 
 \doxysubsection{Member Data Documentation}
-\Hypertarget{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_a6bc89706e65c0193918d8d22ab72b558}\index{boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}!bridge@{bridge}}
+\index{boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}!bridge@{bridge}}
 \index{bridge@{bridge}!boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}}
-\doxysubsubsection{\texorpdfstring{bridge}{bridge}}
+\doxysubsubsection{bridge}
 {\footnotesize\ttfamily \label{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_a6bc89706e65c0193918d8d22ab72b558} 
 boson\+\_\+video\+\_\+publisher.\+video\+\_\+publisher.\+Video\+Publisher.\+bridge = Cv\+Bridge()}
 
-\Hypertarget{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_a735a5b66164b812c465c8509ac13c026}\index{boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}!cap@{cap}}
+
+
+Definition at line \textbf{ 18} of file \textbf{ video\+\_\+publisher.\+py}.
+
+\index{boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}!cap@{cap}}
 \index{cap@{cap}!boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}}
-\doxysubsubsection{\texorpdfstring{cap}{cap}}
+\doxysubsubsection{cap}
 {\footnotesize\ttfamily \label{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_a735a5b66164b812c465c8509ac13c026} 
 boson\+\_\+video\+\_\+publisher.\+video\+\_\+publisher.\+Video\+Publisher.\+cap = cv2.\+Video\+Capture(\textquotesingle{}/dev/video2\textquotesingle{})}
 
-\Hypertarget{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_a4e20fbdce96d817d9af87fe1153a13d0}\index{boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}!publisher\_@{publisher\_}}
+
+
+Definition at line \textbf{ 25} of file \textbf{ video\+\_\+publisher.\+py}.
+
+\index{boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}!publisher\_@{publisher\_}}
 \index{publisher\_@{publisher\_}!boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}}
-\doxysubsubsection{\texorpdfstring{publisher\_}{publisher\_}}
+\doxysubsubsection{publisher\_}
 {\footnotesize\ttfamily \label{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_a4e20fbdce96d817d9af87fe1153a13d0} 
 boson\+\_\+video\+\_\+publisher.\+video\+\_\+publisher.\+Video\+Publisher.\+publisher\+\_\+ = self.\+create\+\_\+publisher(Image, \textquotesingle{}boson\+\_\+video\textquotesingle{}, 10)}
 
-\Hypertarget{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_a91def685497d76ac0d7a2fedfb5c3366}\index{boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}!timer@{timer}}
+
+
+Definition at line \textbf{ 15} of file \textbf{ video\+\_\+publisher.\+py}.
+
+\index{boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}!timer@{timer}}
 \index{timer@{timer}!boson\_video\_publisher.video\_publisher.VideoPublisher@{boson\_video\_publisher.video\_publisher.VideoPublisher}}
-\doxysubsubsection{\texorpdfstring{timer}{timer}}
+\doxysubsubsection{timer}
 {\footnotesize\ttfamily \label{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher_a91def685497d76ac0d7a2fedfb5c3366} 
 boson\+\_\+video\+\_\+publisher.\+video\+\_\+publisher.\+Video\+Publisher.\+timer = self.\+create\+\_\+timer(0.\+05, self.\+timer\+\_\+callback)}
 
 
 
+Definition at line \textbf{ 21} of file \textbf{ video\+\_\+publisher.\+py}.
+
+
+
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-dev\+\_\+ws/src/boson\+\_\+video\+\_\+publisher/boson\+\_\+video\+\_\+publisher/\mbox{\hyperlink{video__publisher_8py}{video\+\_\+publisher.\+py}}\end{DoxyCompactItemize}
+test\+\_\+ws/src/boson\+\_\+video\+\_\+publisher/boson\+\_\+video\+\_\+publisher/\textbf{ video\+\_\+publisher.\+py}\end{DoxyCompactItemize}
