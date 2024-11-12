@@ -22,18 +22,14 @@ This package provides a ROS 2 node for capturing and publishing thermal images f
 
 ### Clone the repository
 
-    git clone https://github.com/yourusername/flir_boson_ros2.git
-    cd flir_boson_ros2
+    git clone [https://github.com/yourusername/flir_boson_ros2.git](https://github.com/MarcuSpade/boson_video_publisher.git)
+    cd boson_video_publisher
 
 ### Build the package
 
 Navigate to your ROS 2 workspace:
 
-    cd ~/ros2_ws/src
-
-Clone the repository into your workspace:
-
-    git clone https://github.com/yourusername/flir_boson_ros2.git
+    cd ~/ros2_ws
 
 Install dependencies:
 
@@ -54,29 +50,16 @@ Source the workspace:
   Make sure your FLIR Boson camera is connected to your system via USB or network interface.
   Launch the ROS 2 node to start capturing and publishing thermal images:
 
-    ros2 run flir_boson_ros2 thermal_camera_publisher
+    ros2 run boson_video_publisher video_publisher
 
-### Configuration
-
-The camera can be configured via command-line arguments when launching the node:
-
-    r: Capture in RAW16 (default).
-    y: Capture in AGC-8 (8-bit) mode.
-    z: Zoom mode (only applicable to RAW16 mode).
-    f<folder_name>: Save the captured images in a folder (folder_name).
-    s[B/b]: Select the camera type (B for Boson640, b for Boson320).
-    [0-9]: Select the video device (/dev/video0 to /dev/video9).
-
-### Example usage:
-
-    ros2 run flir_boson_ros2 thermal_camera_publisher y sB
 
 This example will capture images in 8-bit AGC mode from the Boson640 camera.
-Publishing Thermal Images
+
+## Publishing Thermal Images
 
 The thermal images will be published on the following topic:
 
-    /flir_boson/image_raw: Thermal image in 8-bit format.
+    /boson_video: Thermal image in 8-bit format.
 
 You can visualize the images using rqt_image_view:
 
