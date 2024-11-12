@@ -1,0 +1,32 @@
+\doxysection{boson\+\_\+video\+\_\+publisher.\+video\+\_\+publisher Namespace Reference}
+\hypertarget{namespaceboson__video__publisher_1_1video__publisher}{}\label{namespaceboson__video__publisher_1_1video__publisher}\index{boson\_video\_publisher.video\_publisher@{boson\_video\_publisher.video\_publisher}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classboson__video__publisher_1_1video__publisher_1_1VideoPublisher}{Video\+Publisher}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespaceboson__video__publisher_1_1video__publisher_ac750fd73512691fd9babf0b8433b3889}{main}} (args=None)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceboson__video__publisher_1_1video__publisher_ac750fd73512691fd9babf0b8433b3889}\index{boson\_video\_publisher.video\_publisher@{boson\_video\_publisher.video\_publisher}!main@{main}}
+\index{main@{main}!boson\_video\_publisher.video\_publisher@{boson\_video\_publisher.video\_publisher}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{namespaceboson__video__publisher_1_1video__publisher_ac750fd73512691fd9babf0b8433b3889} 
+boson\+\_\+video\+\_\+publisher.\+video\+\_\+publisher.\+main (\begin{DoxyParamCaption}\item[{}]{args}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00036\ \textcolor{keyword}{def\ }main(args=None):}
+\DoxyCodeLine{00037\ \ \ \ \ rclpy.init(args=args)}
+\DoxyCodeLine{00038\ \ \ \ \ video\_publisher\ =\ VideoPublisher()}
+\DoxyCodeLine{00039\ \ \ \ \ rclpy.spin(video\_publisher)}
+\DoxyCodeLine{00040\ \ \ \ \ video\_publisher.destroy\_node()}
+\DoxyCodeLine{00041\ \ \ \ \ rclpy.shutdown()}
+\DoxyCodeLine{00042\ }
+
+\end{DoxyCode}
